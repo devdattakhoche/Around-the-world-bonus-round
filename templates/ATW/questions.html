@@ -1,34 +1,37 @@
 {% extends "ATW/base.html" %}
 
 {% block title %}
-Questions
+	Questions
 {% endblock title %}
+
 {% block meta %}
-<meta http-equiv="refresh" content="30;url=http://127.0.0.1:8000/Timeout" />
+	<meta http-equiv="refresh" content="30;url=http://127.0.0.1:8000/Timeout" />
 {% endblock meta %}
+
 {% block body %}
 
 <h1>Inside Form</h1>
-{{ flag_count }}
+<!-- {{ flag_count }} -->
 {% if flag_count > 0 %}
-{% if flag < 1 %}
-<p class="row p-3">Your previous answer was correct!</p>
-{% endif %}
-{% endif %}
-
-
-{% if flag_count < 5 %}
-
-<form action="" method="POST" class="form-group">
-    {% csrf_token %}
-    <p>Q.{{ flag_count }}){{ pro.Question }} {{ flag }}</p>
-    <input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
-    <input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
-    <input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
-    <input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>
-    <input type="submit" value="Submit">
-</form>
+	{% if flag < 1 %}
+		<p class="row p-3">Your previous answer was correct!</p>
+	{% endif %}
 {% endif %}
 
+
+{% if flag_count < 6 %}
+
+	<form action="" method="POST" class="form-group">
+		{% csrf_token %}
+
+		<p>Q.{{ flag_count }}) {{ pro.Question }}</p>
+		<input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
+		<input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
+		<input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
+		<input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>
+		<input type="submit" value="Submit">
+	</form>
+
+{% endif %}
 
 {% endblock body %}
