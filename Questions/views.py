@@ -45,6 +45,7 @@ def Questions(request,Uid):
             return redirect('/Home/Question-'+question_no)
         else:
             flag=1
+            flag_count=0
             print(flag)
             list_id.clear()
             return render(request,'ATW/Wrong_Ans.html')
