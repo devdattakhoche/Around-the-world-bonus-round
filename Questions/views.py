@@ -5,5 +5,6 @@ from django.http import HttpResponse
 def Home(request):
     return render(request,'ATW/Home.html')
 
-def Questions(request):
+def Questions(request,id):
+    print(id)
     return render(request,'ATW/questions.html')
