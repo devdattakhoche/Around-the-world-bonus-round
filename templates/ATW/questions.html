@@ -7,15 +7,22 @@
 {% block body %}
 
     <h1>Inside Form</h1>
-    <form action="" method="POST" class="form-group">
-         {% csrf_token %}
-        <p>{{ pro.Question }}</p>
-          <input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
-          <input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
-          <input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
-          <input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>    
-          <input type="submit" value="Submit">
-        </form>
+    {{ flag_count }}
+    
+
+
+    {% if flag_count < 5 %}
+    
+      <form action="" method="POST" class="form-group">
+          {% csrf_token %}
+          <p>{{ pro.Question }} {{ flag }}</p>
+            <input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
+            <input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
+            <input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
+            <input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>    
+            <input type="submit" value="Submit">
+          </form>
+    {% endif %}
 
     
 {% endblock body %}
