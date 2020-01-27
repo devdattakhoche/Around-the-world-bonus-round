@@ -7,7 +7,7 @@
 {% block body %}
 <div class="well p-3 my-3">
     <h3>This is my Homepage</h3>
-    <form action=3 method="post">
+    <form action= {{ mytext }} method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary" onclick="">Start Quiz</button>
     </form>
