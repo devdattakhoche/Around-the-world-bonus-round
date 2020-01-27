@@ -5,8 +5,15 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>This is my Homepage</h1>
-    <button type="button" class="btn btn-primary">Start Quiz</button>
+<div class="well p-3 my-3">
+    <h3>This is my Homepage</h3>
+    <form action="{% url 'questions' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" onclick="">Start Quiz</button>
+    </form>
+    
+</div>
+    
 {% endblock body %}
     
     
