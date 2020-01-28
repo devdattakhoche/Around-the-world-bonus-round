@@ -21,7 +21,7 @@ def Home(request):
     flag_count=1
 
     #faltu logic need to work on this
-    question_no = random.randrange(51, 53)
+    question_no = random.randrange(1, 53)
     # for i in list_id:
     #     if(i == question_no):
     #         question_no = random.randrange(1, 7)
