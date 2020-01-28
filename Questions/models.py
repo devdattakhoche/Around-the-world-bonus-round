@@ -4,11 +4,12 @@ from django.db import models
 
 
 class Question(models.Model):
-    Question = models.CharField(max_length=30)
-    Option_1 = models.CharField(max_length=30)
-    Option_2 = models.CharField(max_length=30)
-    Option_3 = models.CharField(max_length=30)
-    Option_4 = models.CharField(max_length=30)
+    id = models.IntegerField(primary_key=True , unique=True, null=False, blank=False)
+    Question = models.CharField(max_length=300)
+    Option_1 = models.CharField(max_length=60)
+    Option_2 = models.CharField(max_length=60)
+    Option_3 = models.CharField(max_length=60)
+    Option_4 = models.CharField(max_length=60)
 
     def __str__(self):
         x = str(self.id)
@@ -23,7 +24,7 @@ class Question(models.Model):
 
 class Answer(models.Model):
     Question_id = models.ForeignKey(Question, on_delete=models.CASCADE)
-    Ans = models.CharField(max_length=30)
+    Ans = models.CharField(max_length=60)
 
     def __str__(self):
         x = str(self.Question_id)

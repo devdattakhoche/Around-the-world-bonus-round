@@ -21,7 +21,7 @@ def Home(request):
     flag_count=1
 
     #faltu logic need to work on this
-    question_no = random.randrange(1, 2)
+    question_no = random.randrange(51, 53)
     # for i in list_id:
     #     if(i == question_no):
     #         question_no = random.randrange(1, 7)
@@ -59,13 +59,13 @@ def Questions(request, Uid):
             # que_no = random.randrange(1, 7)
             # if(que_no in list_id):
             if flag_count == 2:
-                que_no=random.randrange(2,4) 
+                que_no=random.randrange(53,56) 
             if flag_count == 3:
-                que_no=random.randrange(4,5)
+                que_no=random.randrange(57,58)
             if flag_count == 4:
-                que_no=random.randrange(5,6)
+                que_no=random.randrange(59,60)
             if flag_count == 5:
-                que_no=random.randrange(6,7)
+                que_no=random.randrange(60,61)
             
             question_no = str(que_no)
             list_id.append(question_no)
