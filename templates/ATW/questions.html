@@ -21,16 +21,23 @@
 
 {% if flag_count < 6 %}
 
-	<form action="" method="POST" class="form-group">
-		{% csrf_token %}
-
-		<p>Q.{{ flag_count }}) {{ pro.Question }}</p>
-		<input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
-		<input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
-		<input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
-		<input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>
-		<input type="submit" value="Submit">
-	</form>
+<div class="card" style="width: 50%;">
+	<div class="card-body">
+		<form action="" method="POST" class="form-group">
+			{% csrf_token %}
+	
+			
+				<p class="">Q.{{ flag_count }}) {{ pro.Question }}</p>
+			<hr>
+			
+			<input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
+			<input type="radio" name="Answer" value="{{ pro.Option_2 }}"> {{ pro.Option_2 }}<br>
+			<input type="radio" name="Answer" value="{{ pro.Option_3 }}"> {{ pro.Option_3 }}<br>
+			<input type="radio" name="Answer" value="{{ pro.Option_4 }}"> {{ pro.Option_4 }}<br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</div>
 
 {% endif %}
 

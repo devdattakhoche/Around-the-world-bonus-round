@@ -46,9 +46,13 @@ def Questions(request, Uid):
     # print(Uid)
     if request.method == 'POST':
         Option = request.POST.get('Answer')
+        Option = Option.strip()
         # print(Option)
         y = Answer.objects.get(Question_id=Uid)
-        if y.Ans == Option:
+        k = y.Ans 
+        k = k.strip()
+        print(Option,k)
+        if k.lower() == Option.lower():
             flag = 0
             flag_count += 1
 
