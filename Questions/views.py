@@ -22,9 +22,12 @@ def Home(request):
 
     #faltu logic need to work on this
     question_no = random.randrange(1, 7)
-    for i in list_id:
-        if(i == question_no):
-            question_no = random.randrange(1, 7)
+    # for i in list_id:
+    #     if(i == question_no):
+    #         question_no = random.randrange(1, 7)
+    if question_no in list_id:
+        question_no = random.randrange(1,2) not in list_id
+        print(question_no)
 
     list_id.append(question_no)
 
@@ -43,7 +46,7 @@ def Questions(request, Uid):
     # print(Uid)
     if request.method == 'POST':
         Option = request.POST.get('Answer')
-        print(Option)
+        # print(Option)
         y = Answer.objects.get(Question_id=Uid)
         if y.Ans == Option:
             flag = 0
@@ -53,8 +56,20 @@ def Questions(request, Uid):
                 flag_count = 1
                 list_id.clear()
                 return render(request, 'ATW/success.html')
-    
-            question_no = str(random.randrange(1, 7))
+            # que_no = random.randrange(1, 7)
+            # if(que_no in list_id):
+            if flag_count == 2:
+                que_no=random.randrange(2,4) 
+            if flag_count == 3:
+                que_no=random.randrange(4,5)
+            if flag_count == 4:
+                que_no=random.randrange(5,6)
+            if flag_count == 5:
+                que_no=random.randrange(6,7)
+            
+            question_no = str(que_no)
+            list_id.append(question_no)
+
             return redirect('/Home/Question-'+question_no)
         else:
             flag = 1
