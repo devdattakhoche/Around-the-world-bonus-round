@@ -21,13 +21,13 @@ def Home(request):
     flag_count=1
 
     #faltu logic need to work on this
-    question_no = random.randrange(1, 7)
+    question_no = random.randrange(1, 2)
     # for i in list_id:
     #     if(i == question_no):
     #         question_no = random.randrange(1, 7)
-    if question_no in list_id:
-        question_no = random.randrange(1,2) not in list_id
-        print(question_no)
+    # if question_no in list_id:
+    #     question_no = random.randrange(1,2) not in list_id
+    #     print(question_no)
 
     list_id.append(question_no)
 
