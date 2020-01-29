@@ -453,6 +453,10 @@
 			  background-color: #FFF
 		  }
 	  }
+
+	  .full_height{
+		  height:100%;
+	  }
 	  
 </style>
 {% endblock style %}
@@ -602,7 +606,7 @@ function trial4(){
 {% block body %}
 
 {% if flag_count < 7 %}
-<div class="container-fluid bg-info">
+<div class="container-fluid bg-info full_height">
 
 	<div class="clock-container " id = 'something'>
 		<div class="clock-col">
@@ -638,8 +642,13 @@ function trial4(){
 		
 	   </div>   
    </div>
+   {% if flag_count > 1%}
    <div class="modal-footer text-muted">
-	<span id="answer"></span>
+		<span id="answer">Your previous answer was correct</span>
+	{% else %}
+	<div class="modal-footer text-muted">
+		<span id="answer"></span>
+	{% endif %}
 </div>
 </div>
 </div>
