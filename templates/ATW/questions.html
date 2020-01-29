@@ -27,7 +27,7 @@
 			{% csrf_token %}
 	
 			
-				<p class="">Q.{{ flag_count }}) {{ pro.Question }}</p>
+				<p class="">Q.{{ flag_count }} {{ pro.Question }}</p>
 			<hr>
 			
 			<input type="radio" name="Answer" value="{{ pro.Option_1 }}"> {{ pro.Option_1 }}<br>
