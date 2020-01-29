@@ -2,12 +2,20 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import Answer, Question
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 import random
 flag = 0
 flag_count = 1
 list_id = []
 
 # Create your views here.
+
+def Success(request):
+    return render(request,'ATW/success.html')
+
+def Wrong(request):
+    return render(request,'ATW/Wrong_Ans.html')
 
 def Home(request):
     print("Printed in Views.Home")
@@ -37,7 +45,7 @@ def Home(request):
     x['flag'] = flag
     return render(request, 'ATW/Home.html', x)
 
-
+@csrf_exempt
 def Questions(request, Uid):
     print("Printed in Views.Questions")
     global flag
@@ -47,7 +55,6 @@ def Questions(request, Uid):
     if request.method == 'POST':
         Option = request.POST.get('Answer')
         Option = Option.strip()
-        # print(Option)
         y = Answer.objects.get(Question_id=Uid)
         k = y.Ans 
         k = k.strip()
@@ -59,7 +66,9 @@ def Questions(request, Uid):
             if(flag_count == 6):
                 flag_count = 1
                 list_id.clear()
-                return render(request, 'ATW/success.html')
+                dict1 = {'flag':flag,'question':'{}'.format('Sucess'),'flag_count':6}
+                return JsonResponse(dict1)
+                # return render(request, 'ATW/success.html')
             # que_no = random.randrange(1, 7)
             # if(que_no in list_id):
             if flag_count == 2:
@@ -73,14 +82,21 @@ def Questions(request, Uid):
             
             question_no = str(que_no)
             list_id.append(question_no)
-
-            return redirect('/Home/Question-'+question_no)
+            print('hi')
+            dict1 = {'flag':flag,'question':'{}'.format(question_no),'flag_count':flag_count}
+            print(dict1)
+            return JsonResponse(dict1)
+            # return redirect('/Home/Question-'+question_no)
         else:
+            print('hi')
             flag = 1
             flag_count = 1
             # print(flag)
             list_id.clear()
-            return render(request, 'ATW/Wrong_Ans.html')
+            dict2 = {'flag':flag,'question':'{}'.format('Home/Wrong'),'flag_count':flag_count}
+            print(dict2)
+            return JsonResponse(dict2)
+            # return render(request, 'ATW/Wrong_Ans.html')
 
     x = Question.objects.get(id=Uid)
     # print(x)
