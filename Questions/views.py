@@ -8,6 +8,7 @@ import random
 flag = 0
 flag_count = 1
 list_id = []
+answer_count = 0
 
 # Create your views here.
 
@@ -22,7 +23,9 @@ def Home(request):
     global flag
     global flag_count
     global list_id
+    global answer_count
 
+    answer_count = 0
     # dictionary to be passed
     x = {}
     
@@ -51,7 +54,8 @@ def Questions(request, Uid):
     global flag
     global flag_count
     global list_id
-    # print(Uid)
+    global answer_count
+
     if request.method == 'POST':
         Option = request.POST.get('Answer')
         Option = Option.strip()
@@ -59,18 +63,16 @@ def Questions(request, Uid):
         k = y.Ans 
         k = k.strip()
         print(Option,k)
+        if(flag_count==6):
+            flag_count = 1
+            list_id.clear()
+            dict1 = {'flag':flag,'question':'{}'.format('Sucess'),'flag_count':6,'answer_count':answer_count}
+            return JsonResponse(dict1)
         if k.lower() == Option.lower():
+            answer_count += 1
             flag = 0
             flag_count += 1
 
-            if(flag_count == 6):
-                flag_count = 1
-                list_id.clear()
-                dict1 = {'flag':flag,'question':'{}'.format('Sucess'),'flag_count':6}
-                return JsonResponse(dict1)
-                # return render(request, 'ATW/success.html')
-            # que_no = random.randrange(1, 7)
-            # if(que_no in list_id):
             if flag_count == 2:
                 que_no=random.randrange(21,41) 
             if flag_count == 3:
@@ -79,21 +81,33 @@ def Questions(request, Uid):
                 que_no=random.randrange(61,81)
             if flag_count == 5:
                 que_no=random.randrange(81,101)
+            if flag_count == 6:
+                que_no = 0
             
             question_no = str(que_no)
             list_id.append(question_no)
-            print('hi')
-            dict1 = {'flag':flag,'question':'{}'.format(question_no),'flag_count':flag_count}
-            print(dict1)
+            dict1 = {'flag':flag,'question':'{}'.format(question_no),'flag_count':flag_count,'answer_count':answer_count}
             return JsonResponse(dict1)
             # return redirect('/Home/Question-'+question_no)
         else:
-            print('hi')
             flag = 1
-            flag_count = 1
+            flag_count += 1
+            if flag_count == 2:
+                que_no=random.randrange(21,41) 
+            if flag_count == 3:
+                que_no=random.randrange(41,61)
+            if flag_count == 4:
+                que_no=random.randrange(61,81)
+            if flag_count == 5:
+                que_no=random.randrange(81,101)
+            if flag_count == 6:
+                que_no = 0
+            
+            question_no = str(que_no)
+            # flag_count = 1
             # print(flag)
             list_id.clear()
-            dict2 = {'flag':flag,'question':'{}'.format('Home/Wrong'),'flag_count':flag_count}
+            dict2 = {'flag':flag,'question':'{}'.format(question_no),'flag_count':flag_count,'answer_count':answer_count}
             print(dict2)
             return JsonResponse(dict2)
             # return render(request, 'ATW/Wrong_Ans.html')

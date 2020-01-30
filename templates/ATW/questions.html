@@ -465,12 +465,15 @@
 
 {% block script %}
 <script>
+	
+	var next_url = "http://127.0.0.1:8000/Home/Question-25";
+
 	document.addEventListener('DOMContentLoaded', () =>
 	requestAnimationFrame(updateTime)
   );
   
   function updateTime() {
-	var timeLeft = 30;
+	var timeLeft = 59;
 	var timerId = setInterval(countdown, 1000);
 	
 	function countdown() {
@@ -486,8 +489,9 @@
   }
 
   function doSomething(){
-	 window.location.replace("http://127.0.0.1:8000/Timeout");
+	 window.location.replace("http://127.0.0.1:8000/Home/Wrong");
   }
+
   function trial1(){
 	var a = document.getElementsByName("q_answer")[0].value;
 	var xhttp = new XMLHttpRequest();
@@ -496,28 +500,28 @@
 	  if (this.readyState == 4 && this.status == 200) {
 		var a = xhttp.responseText
 		var obj = JSON.parse(a)
-		console.log(obj.flag)
-		console.log(obj.question)
 
-		if(obj.flag_count == 6){
-			window.location.replace("http://127.0.0.1:8000/Home/Success")
+		if(obj.flag_count==6 && obj.answer_count >= 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Question-Sucess")
+		}
+		else if(obj.flag_count==6 && obj.answer_count < 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Wrong")
 		}
 
-		if (obj.flag == 0){
-			console.log(obj.flag)
-			console.log(obj.flag_count)
-			window.location.replace("http://127.0.0.1:8000/Home/Question-" + obj.question);
-		}else if(obj.flag == 1){
-			window.location.replace("http://127.0.0.1:8000/" + obj.question);
+		if(obj.flag_count < 6){
+			next_url = "http://127.0.0.1:8000/Home/Question-" + obj.question
+			window.location.replace(next_url);
 		}
 
 	  }
 	};
+
 	xhttp.open("POST", "http://127.0.0.1:8000/Home/Question-{{ pro }}", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("Answer="+ a);
 
   }
+
   function trial2(){
 	var a = document.getElementsByName("q_answer")[1].value;
 	var xhttp = new XMLHttpRequest();
@@ -526,27 +530,29 @@
 	  if (this.readyState == 4 && this.status == 200) {
 		var a = xhttp.responseText
 		var obj = JSON.parse(a)
-		console.log(obj.flag)
-		console.log(obj.question)
-		if(obj.flag_count == 6){
-			window.location.replace("http://127.0.0.1:8000/Home/Success")
+
+		if(obj.flag_count==6 && obj.answer_count >= 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Question-Sucess")
 		}
-		if (obj.flag == 0){
-			console.log(obj.flag)
-			console.log(obj.flag_count)
-			window.location.replace("http://127.0.0.1:8000/Home/Question-" + obj.question);
-		}else if(obj.flag == 1){
-			window.location.replace("http://127.0.0.1:8000/" + obj.question);
+		else if(obj.flag_count==6 && obj.answer_count < 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Wrong")
+		}
+
+		if(obj.flag_count < 6){
+			next_url = "http://127.0.0.1:8000/Home/Question-" + obj.question
+			window.location.replace(next_url);
 		}
 
 	  }
 	};
+
 	xhttp.open("POST", "http://127.0.0.1:8000/Home/Question-{{ pro }}", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("Answer="+ a);
-	
-}
-function trial3(){
+
+  }
+
+  function trial3(){
 	var a = document.getElementsByName("q_answer")[2].value;
 	var xhttp = new XMLHttpRequest();
 
@@ -554,26 +560,29 @@ function trial3(){
 	  if (this.readyState == 4 && this.status == 200) {
 		var a = xhttp.responseText
 		var obj = JSON.parse(a)
-		console.log(obj.flag)
-		console.log(obj.flag_count)
 
-		if(obj.flag_count == 6){
-			window.location.replace("http://127.0.0.1:8000/Home/Success")
+		if(obj.flag_count==6 && obj.answer_count >= 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Question-Sucess")
 		}
-		if (obj.flag == 0){
-			console.log(obj.flag)
-			console.log(obj.flag_count)
-			 window.location.replace("http://127.0.0.1:8000/Home/Question-" + obj.question); 
-		}else if(obj.flag == 1){
-			window.location.replace("http://127.0.0.1:8000/" + obj.question);
+		else if(obj.flag_count==6 && obj.answer_count < 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Wrong")
 		}
+
+		if(obj.flag_count < 6){
+			next_url = "http://127.0.0.1:8000/Home/Question-" + obj.question
+			window.location.replace(next_url);
+		}
+
 	  }
 	};
+
 	xhttp.open("POST", "http://127.0.0.1:8000/Home/Question-{{ pro }}", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("Answer="+ a);
-}
-function trial4(){
+
+  }
+
+  function trial4(){
 	var a = document.getElementsByName("q_answer")[3].value;
 	var xhttp = new XMLHttpRequest();
 
@@ -581,24 +590,27 @@ function trial4(){
 	  if (this.readyState == 4 && this.status == 200) {
 		var a = xhttp.responseText
 		var obj = JSON.parse(a)
-		console.log(obj.flag)
-		console.log(obj.flag_count)
-		if(obj.flag_count == 6){
-			window.location.replace("http://127.0.0.1:8000/Home/Success")
+
+		if(obj.flag_count==6 && obj.answer_count >= 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Question-Sucess")
 		}
-		if (obj.flag == 0){
-			console.log(obj.flag)
-			window.location.replace("http://127.0.0.1:8000/Home/Question-" + obj.question); 
-		}else if(obj.flag == 1){
-			window.location.replace("http://127.0.0.1:8000/" + obj.question);
+		else if(obj.flag_count==6 && obj.answer_count < 3){
+			window.location.replace("http://127.0.0.1:8000/Home/Wrong")
 		}
+
+		if(obj.flag_count < 6){
+			next_url = "http://127.0.0.1:8000/Home/Question-" + obj.question
+			window.location.replace(next_url);
+		}
+
 	  }
 	};
+
 	xhttp.open("POST", "http://127.0.0.1:8000/Home/Question-{{ pro }}", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("Answer="+ a);
-}
 
+  }
   </script>
 {% endblock script %}
 	
@@ -643,11 +655,13 @@ function trial4(){
 		
 	   </div>   
    </div>
-   {% if flag_count > 1%}
    <div class="modal-footer text-muted">
+   {% if flag == 0 and flag_count > 1 %}
+   
 		<span id="answer">Your previous answer was correct</span>
+	{% elif flag == 1 and flag_count > 1 %}
+		<span id="answer">Your previous answer was incorrect</span>
 	{% else %}
-	<div class="modal-footer text-muted">
 		<span id="answer"></span>
 	{% endif %}
 </div>
